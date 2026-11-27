@@ -118,7 +118,7 @@ jobs:
     steps:
       - name: Generate app token
         id: app-token
-        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        uses: actions/create-github-app-token@f418cff399f7aef4c2f0ad47e25ca7a6abbdd6fc # v3.4.0
         with:
           app-id: ${{ secrets.PROVIDER_WATCH_APP_ID }}
           private-key: ${{ secrets.PROVIDER_WATCH_APP_PRIVATE_KEY }}
@@ -141,7 +141,7 @@ jobs:
           path: _reports
 
       - name: Install uv
-        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        uses: astral-sh/setup-uv@1db35dd8eee11c5894872e0b383ae6c406cf738d # v10.4.0
         with:
           version: "latest"
           enable-cache: false
@@ -190,7 +190,7 @@ jobs:
 
       - name: Run provider research
         timeout-minutes: 55
-        uses: anthropics/claude-code-action@d70510b174a1244958df0b03166a54912811f3e6 # v1.0.264
+        uses: anthropics/claude-code-action@c84e279f859e2591391e95bd309286eb111c345f # v1.0.284
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
           # Researcher launches must block until the researcher returns
@@ -241,7 +241,7 @@ jobs:
       - name: Generate app token for publishing
         id: publish-token
         if: always() && inputs.dry_run != true
-        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        uses: actions/create-github-app-token@f418cff399f7aef4c2f0ad47e25ca7a6abbdd6fc # v3.4.0
         with:
           app-id: ${{ secrets.PROVIDER_WATCH_APP_ID }}
           private-key: ${{ secrets.PROVIDER_WATCH_APP_PRIVATE_KEY }}
@@ -292,7 +292,7 @@ jobs:
     steps:
       - name: Generate app token
         id: app-token
-        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        uses: actions/create-github-app-token@f418cff399f7aef4c2f0ad47e25ca7a6abbdd6fc # v3.4.0
         with:
           app-id: ${{ secrets.PROVIDER_WATCH_APP_ID }}
           private-key: ${{ secrets.PROVIDER_WATCH_APP_PRIVATE_KEY }}
@@ -312,7 +312,7 @@ jobs:
           path: _reports
 
       - name: Install uv
-        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        uses: astral-sh/setup-uv@1db35dd8eee11c5894872e0b383ae6c406cf738d # v10.4.0
         with:
           version: "latest"
           enable-cache: false
@@ -338,7 +338,7 @@ jobs:
 
       - name: Author the digest
         timeout-minutes: 20
-        uses: anthropics/claude-code-action@d70510b174a1244958df0b03166a54912811f3e6 # v1.0.264
+        uses: anthropics/claude-code-action@c84e279f859e2591391e95bd309286eb111c345f # v1.0.284
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ steps.app-token.outputs.token }}
